@@ -6,7 +6,7 @@ To output:
 
 ```json
 {
-   "swagger": "2.0",
+   "openapi": "3.0",
    "schemes": ["http"],
    "host": "example.com",
    "basePath": "/api"
@@ -111,7 +111,7 @@ Generates:
 
 ```json
 {
-  "swagger": "2.0",
+  "openapi": "3.0",
   "paths": {
     "/products": {
       "get": {
@@ -154,7 +154,7 @@ results in:
 
 ```json
 {
-  "swagger": "2.0",
+  "openapi": "3.0",
   "definitions": {
     "Product": {
       "properties": {
@@ -205,7 +205,7 @@ Results in:
 
 ```json
 {
-    "swagger": "2.0",
+    "openapi": "3.0",
     "paths": {},
     "definitions": {
         "product_id": {

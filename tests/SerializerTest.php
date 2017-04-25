@@ -34,7 +34,7 @@ class SerializerTest extends SwaggerTestCase
         $path->post->responses = [$resp];
 
         $expected = new Annotations\Swagger([]);
-        $expected->swagger = '2.0';
+        $expected->openapi= '3.0';
         $expected->paths = [
             $path,
         ];
@@ -48,7 +48,7 @@ class SerializerTest extends SwaggerTestCase
 
         $json = <<<JSON
 {
-  "swagger": "2.0",
+  "openapi": "3.0",
   "paths": {
     "/products": {
       "post": {
