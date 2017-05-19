@@ -4,11 +4,11 @@
 
 # swagger-php
 
-Generate interactive [Swagger](http://swagger.io) documentation for your RESTful API using [doctrine annotations](http://doctrine-common.readthedocs.org/en/latest/reference/annotations.html).
+Generate interactive [OpenAPI](https://www.openapis.org) documentation for your RESTful API using [doctrine annotations](http://doctrine-common.readthedocs.org/en/latest/reference/annotations.html).
 
 ## Features
 
- - Compatible with the Swagger 2.0 specification.
+ - Compatible with the OpenAPI 3.0 specification.
  - Exceptional error reporting (with hints, context)
  - Extracts information from code & existing phpdoc annotations.
  - Command-line interface available.
@@ -44,14 +44,14 @@ See the Examples directory for more.
 
 ### Usage from php
 
-Generate always-up-to-date the swagger documentation dynamically.
+Generate always-up-to-date documentation.
 
 ```php
 <?php
 require("vendor/autoload.php");
-$swagger = \Swagger\scan('/path/to/project');
+$openapi = \Swagger\scan('/path/to/project');
 header('Content-Type: application/json');
-echo $swagger;
+echo $openapi;
 ```
 ### Usage from the Command Line Interface
 
@@ -63,7 +63,7 @@ Generate the swagger documentation to a static json file.
 
 ### Usage from the Deserializer
 
-Generate the swagger annotation object from a json string, which makes it easier to manipulate swagger object programmatically.
+Generate the OpenApi annotation object from a json string, which makes it easier to manipulate objects programmatically.
 
 ```php
 <?php
@@ -71,13 +71,13 @@ Generate the swagger annotation object from a json string, which makes it easier
 use Swagger\Serializer;
 
 $serializer = new Serializer();
-$swagger = $serializer->deserialize($jsonString, 'Swagger\Annotations\Swagger');
-echo $swagger;
+$openapi = $serializer->deserialize($jsonString, 'Swagger\Annotations\OpenApi');
+echo $openapi;
 ```
 
-## More on Swagger
+## More on OpenAPI
 
-  * http://swagger.io/
+  * https://www.openapis.org
   * https://github.com/swagger-api/swagger-spec/
   * http://bfanger.github.io/swagger-explained/
 
