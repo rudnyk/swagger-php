@@ -295,6 +295,20 @@ abstract class AbstractAnnotation implements JsonSerializable
             $data->$dollarRef = $data->ref;
             unset($data->ref);
         }
+
+        if (defined('SWG_GROUP')) {
+            foreach ($data->definitions as $definitionCode => $definition) {
+                if ($definition->grouping) {
+                    foreach ($definition->properties as $propertyCode => $property) {
+                        if (!is_array($property->groups) || empty($property->groups) || !in_array(SWG_GROUP, $property->groups)) {
+                            unset($data->definitions->$definitionCode->properties->$propertyCode);
+                        }
+                        unset($property->groups);
+                    }
+                }
+            }
+        }
+
         return $data;
     }
 
@@ -360,11 +374,11 @@ abstract class AbstractAnnotation implements JsonSerializable
             }
         }
         if (isset($this->ref)) {
-            if (substr($this->ref, 0, 2) === '#/' && count($parents) > 0  && $parents[0] instanceof Swagger) { // Internal reference
+            if (substr($this->ref, 0, 2) === '#/' && count($parents) > 0 && $parents[0] instanceof Swagger) { // Internal reference
                 try {
                     $parents[0]->ref($this->ref);
                 } catch (Exception $exception) {
-                    Logger::notice($exception->getMessage().' for '.$this->identity().' in '.$this->_context);
+                    Logger::notice($exception->getMessage() . ' for ' . $this->identity() . ' in ' . $this->_context);
                 }
             }
         } else {
@@ -436,7 +450,7 @@ abstract class AbstractAnnotation implements JsonSerializable
             if ($value === null || is_scalar($value) || in_array($field, $blacklist)) {
                 continue;
             }
-            $ref = $baseRef !== '' ? $baseRef.'/'.urlencode($field) : urlencode($field);
+            $ref = $baseRef !== '' ? $baseRef . '/' . urlencode($field) : urlencode($field);
             if (is_object($value)) {
                 if (method_exists($value, 'validate')) {
                     if (!$value->validate($parents, $skip, $ref)) {

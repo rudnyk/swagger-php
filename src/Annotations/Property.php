@@ -17,6 +17,12 @@ class Property extends Schema
      */
     public $property;
 
+    /**
+     * Property groups, to work with SWG_GROUP constant.
+     * @var array
+     */
+    public $groups;
+
     /** @inheritdoc */
     public static $_parents = [
         'Swagger\Annotations\Definition',

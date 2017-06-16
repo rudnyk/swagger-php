@@ -202,6 +202,12 @@ class Schema extends AbstractAnnotation
      */
     public $additionalProperties;
 
+    /**
+     * If true - then check groups for properties
+     * @var bool
+     */
+    public $grouping;
+
     /** @inheritdoc */
     public static $_types = [
         'description' => 'string',
